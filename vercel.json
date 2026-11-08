@@ -3,11 +3,13 @@
   "services": {
     "backend": {
       "root": "backend",
-      "framework": "express"
+      "framework": "express",
+      "installCommand": "npm install --legacy-peer-deps"
     },
     "frontend": {
       "root": "frontend",
-      "framework": "nextjs"
+      "framework": "nextjs",
+      "installCommand": "npm install --legacy-peer-deps"
     }
   },
   "rewrites": [
