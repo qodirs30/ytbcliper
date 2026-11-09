@@ -12,22 +12,22 @@ import * as schema from "@/lib/schema"; // Your Drizzle schema, adjust if necess
 // NEXT_PUBLIC_APP_URL (e.g., http://localhost:3000 for development)
 // DATABASE_URL (your Neon database connection string)
 
-if (!process.env.NEXT_PUBLIC_APP_URL) {
-  throw new Error('NEXT_PUBLIC_APP_URL is not set in .env file');
-}
-if (!process.env.BETTER_AUTH_SECRET) {
-  throw new Error('BETTER_AUTH_SECRET is not set in .env file');
-}
-if (!process.env.GOOGLE_CLIENT_ID) {
-  throw new Error('GOOGLE_CLIENT_ID is not set in .env file');
-}
-if (!process.env.GOOGLE_CLIENT_SECRET) {
-  throw new Error('GOOGLE_CLIENT_SECRET is not set in .env file');
-}
-if (!process.env.DATABASE_URL) {
-  // This should be caught by drizzle.config.ts or db.ts already, but good to have
-  throw new Error('DATABASE_URL is not set in .env file');
-}
+// if (!process.env.NEXT_PUBLIC_APP_URL) {
+//   throw new Error('NEXT_PUBLIC_APP_URL is not set in .env file');
+// }
+// if (!process.env.BETTER_AUTH_SECRET) {
+//   throw new Error('BETTER_AUTH_SECRET is not set in .env file');
+// }
+// if (!process.env.GOOGLE_CLIENT_ID) {
+//   throw new Error('GOOGLE_CLIENT_ID is not set in .env file');
+// }
+// if (!process.env.GOOGLE_CLIENT_SECRET) {
+//   throw new Error('GOOGLE_CLIENT_SECRET is not set in .env file');
+// }
+// if (!process.env.DATABASE_URL) {
+//   // This should be caught by drizzle.config.ts or db.ts already, but good to have
+//   throw new Error('DATABASE_URL is not set in .env file');
+// }
 
 export const auth = betterAuth({
     socialProviders: {
@@ -44,12 +44,12 @@ export const auth = betterAuth({
 
     // Core settings
     secret: process.env.BETTER_AUTH_SECRET,
-    baseURL: process.env.NEXT_PUBLIC_APP_URL,
+    baseURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
 
     // Origins allowed to make authenticated requests (for CORS and CSRF protection)
     trustedOrigins: (
       process.env.TRUSTED_ORIGINS ||
-      `${process.env.NEXT_PUBLIC_APP_URL},https://www.clippa.in,https://clippa.in`
+      `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"},https://www.clippa.in,https://clippa.in`
     )
       .split(/,\s*/)
       .filter(Boolean),
