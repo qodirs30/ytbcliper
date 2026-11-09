@@ -32,8 +32,8 @@ import * as schema from "@/lib/schema"; // Your Drizzle schema, adjust if necess
 export const auth = betterAuth({
     socialProviders: {
         google: {
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+            clientId: process.env.GOOGLE_CLIENT_ID || "dummy_id",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "dummy_secret"
         }
     },
 
@@ -43,7 +43,7 @@ export const auth = betterAuth({
     }),
 
     // Core settings
-    secret: process.env.BETTER_AUTH_SECRET,
+    secret: process.env.BETTER_AUTH_SECRET || "dummy_auth_secret",
     baseURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
 
     // Origins allowed to make authenticated requests (for CORS and CSRF protection)
