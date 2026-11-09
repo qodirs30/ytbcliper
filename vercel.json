@@ -1,31 +1,10 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "backend": {
-      "root": "backend",
-      "framework": "express",
-      "installCommand": "npm install --legacy-peer-deps",
-      "buildCommand": "echo 'No build step needed'"
-    },
-    "frontend": {
-      "root": "frontend",
-      "framework": "nextjs",
-      "installCommand": "npm install --legacy-peer-deps",
-      "buildCommand": "npm run build"
-    }
-  },
+  "version": 2,
+  "rootDirectory": "frontend",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": {
-        "service": "backend"
-      }
-    },
-    {
-      "source": "/(.*)",
-      "destination": {
-        "service": "frontend"
-      }
+      "destination": "https://backend-production-07bd.up.railway.app/api/$1"
     }
   ]
 }
